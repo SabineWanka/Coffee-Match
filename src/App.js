@@ -1,18 +1,20 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Landingpage from "./Home";
+import Questionnaire from "./pages/Questionnaire";
+import Homepage from "./pages/homepage";
+import withRoot from "./withRoot";
 
 function App() {
   return (
     <Router>
-      <div>
+      <div style={{ marginLeft: "0.5rem", marginRight: "0.5rem" }}>
         <Switch>
-          <Route exact path="/" component={Landingpage} />
-
+          <Route exact path="/quiz" component={Questionnaire} />
+          <Route exact path="/" component={Homepage} />
         </Switch>
       </div>
     </Router>
   );
 }
 
-export default App;
+export default withRoot(App);
