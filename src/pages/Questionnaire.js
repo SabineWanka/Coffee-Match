@@ -12,9 +12,6 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
 import { Card as NiceCard } from "react-rainbow-components";
 
 const useStyles = makeStyles(theme => ({
@@ -55,6 +52,10 @@ const useStyles = makeStyles(theme => ({
   },
   hidden: {
     opacity: 0.5
+  },
+
+  button: {
+    marginTop: theme.spacing(8)
   }
 }));
 
@@ -112,25 +113,6 @@ const AirbnbSlider = withStyles({
     height: 3
   }
 })(Slider);
-
-const products = [
-  { name: "Product 1", desc: "A nice thing", price: "$9.99" },
-  { name: "Product 4", desc: "Best thing of all", price: "$14.11" },
-  { name: "Shipping", desc: "", price: "Free" }
-];
-const addresses = [
-  "1 Material-UI Drive",
-  "Reactville",
-  "Anytown",
-  "99999",
-  "USA"
-];
-const payments = [
-  { name: "Card type", detail: "Visa" },
-  { name: "Card holder", detail: "Mr John Smith" },
-  { name: "Card number", detail: "xxxx-xxxx-xxxx-1234" },
-  { name: "Expiry date", detail: "04/2024" }
-];
 
 function valuetext(value) {
   return `${value}°C`;
@@ -190,11 +172,17 @@ export default function CenteredGrid() {
               className={classes.opener}
               style={{ backgroundImage: `url("images/opener.jpg")` }}
             >
-              <Typography variant="h5" color="inherit" paragraph>
-                <center>
-                  <button>Find your perfect coffee match</button>
-                </center>
-              </Typography>
+              <Typography variant="h5" color="inherit" paragraph></Typography>
+              <Button
+                color="secondary"
+                size="large"
+                variant="contained"
+                className={classes.button}
+                component="a"
+                href="/quiz"
+              >
+                Find the perfect coffee
+              </Button>
             </Grid>
           </Grid>
         </Grid>

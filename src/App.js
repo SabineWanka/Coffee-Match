@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Questionnaire from "./pages/Questionnaire";
-import Homepage from "./pages/homepage";
+import Homepage from "./pages/Homepage";
 import withRoot from "./withRoot";
 
 function App() {
