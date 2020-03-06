@@ -102,10 +102,17 @@ function ProductCategories(props) {
       title: "Process Method",
       width: "40%"
     },
+
     {
-      url: "",
-      title: "Price",
-      width: "38%"
+      url: "images/roast.jpg",
+      title: "Roast Profile",
+      width: "40%"
+    },
+
+    {
+      url: "images/profile.jpg",
+      title: "Taste Profile",
+      width: "40%"
     }
   ];
 

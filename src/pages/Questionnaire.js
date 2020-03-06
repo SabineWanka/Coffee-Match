@@ -12,14 +12,17 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import { Card as NiceCard } from "react-rainbow-components";
+import CardHeader from "@material-ui/core/CardHeader";
+import Box from "@material-ui/core/Box";
+import { Chip } from "react-rainbow-components";
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },
+
   media: {
-    height: 200
+    height: 300
   },
 
   listItem: {
@@ -42,7 +45,11 @@ const useStyles = makeStyles(theme => ({
   },
 
   closer: {
-    height: 400
+    height: 600
+  },
+
+  result: {
+    height: "100%"
   },
 
   textField: {
@@ -59,14 +66,53 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const profile = [
+  {
+    value: 0,
+    label: "low"
+  },
+
+  {
+    value: 6,
+    label: "high"
+  }
+];
+
+const weight = [
+  {
+    value: 0,
+    label: "light"
+  },
+
+  {
+    value: 6,
+    label: "heavy"
+  }
+];
+
 const marks = [
   {
     value: 0,
     label: "0 €"
   },
+
   {
-    value: 30,
-    label: "30 €"
+    value: 20,
+    label: "20 €"
+  },
+
+  {
+    value: 40,
+    label: "40 €"
+  },
+
+  {
+    value: 60,
+    label: "60 €"
+  },
+  {
+    value: 80,
+    label: "80 €"
   },
   {
     value: 100,
@@ -74,59 +120,13 @@ const marks = [
   }
 ];
 
-const AirbnbSlider = withStyles({
-  root: {
-    color: "#3a8589",
-    height: 3,
-    padding: "13px 0"
-  },
-  thumb: {
-    height: 27,
-    width: 27,
-    backgroundColor: "#fff",
-    border: "1px solid currentColor",
-    marginTop: -12,
-    marginLeft: -13,
-    boxShadow: "#ebebeb 0px 2px 2px",
-    "&:focus,&:hover,&$active": {
-      boxShadow: "#ccc 0px 2px 3px 1px"
-    },
-    "& .bar": {
-      // display: inline-block !important;
-      height: 9,
-      width: 1,
-      backgroundColor: "currentColor",
-      marginLeft: 1,
-      marginRight: 1
-    }
-  },
-  active: {},
-  valueLabel: {
-    left: "calc(-50% + 4px)"
-  },
-  track: {
-    height: 3
-  },
-  rail: {
-    color: "#d8d8d8",
-    opacity: 1,
-    height: 3
-  }
-})(Slider);
-
 function valuetext(value) {
-  return `${value}°C`;
+  return `${value}€`;
 }
 
-function AirbnbThumbComponent(props) {
-  return (
-    <span {...props}>
-      <span className="bar" />
-      <span className="bar" />
-      <span className="bar" />
-    </span>
-  );
-}
+//function valueLabelFormat(value) {
+// return marks.findIndex(mark => mark.value === value) + 1;
+//}
 
 export default function CenteredGrid() {
   const classes = useStyles();
@@ -142,22 +142,34 @@ export default function CenteredGrid() {
     setCurrentStep(currentStep - 1);
   };
 
+  const [value, setValue] = React.useState([8, 20]);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <div className={classes.root}>
       <h1>
         <center>Coffee Match</center>
       </h1>
 
-      <div style={{ display: "flex" }}>
-        {![2, 7, 8].includes(currentStep) &&
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "central",
+          flexWrap: "wrap",
+          margin: "0.5"
+        }}
+        className="rainbow-p-vertical_large rainbow-align-content_center rainbow-flex_wrap"
+      >
+        {![1, 2, 10, 11].includes(currentStep) &&
           answers.map(a => (
-            <NiceCard label={a.answer}>
-              <div className="rainbow-p-around_xx-large rainbow-align-content_center rainbow-flex_column">
-                <h5 className="rainbow-p-top_large rainbow-font-size-heading_small">
-                  <center>{a.answer}</center>
-                </h5>
-              </div>
-            </NiceCard>
+            <Chip label={a.answer} variant="neutral">
+              <h5 className="rainbow-p-top_large rainbow-font-size-heading_small">
+                <center>{a.answer}</center>
+              </h5>
+            </Chip>
           ))}
       </div>
 
@@ -179,7 +191,6 @@ export default function CenteredGrid() {
                 variant="contained"
                 className={classes.button}
                 component="a"
-                href="/quiz"
               >
                 Find the perfect coffee
               </Button>
@@ -187,12 +198,139 @@ export default function CenteredGrid() {
           </Grid>
         </Grid>
       ) : null}
+
       {currentStep === 2 ? (
         <Grid
           container
           spacing={3}
-          className={currentStep > 2 ? classes.hidden : ""}
+          //className={currentStep > 2 ? classes.hidden : ""}
         >
+          <Grid item xs={12}>
+            <Card
+              className={classes.root}
+              onClick={() =>
+                nextStep("Filter Coffee", "images/filtercoffee.jpg")
+              }
+            >
+              <CardActionArea>
+                <CardMedia
+                  className={classes.media}
+                  image="images/filtercoffee.jpg"
+                  title="filter"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    <center>Filter Coffee</center>
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
+          <Grid item xs={12}>
+            <Card
+              className={classes.root}
+              onClick={() => nextStep("Espresso", "images/espresso.jpg")}
+            >
+              <CardActionArea>
+                <CardMedia
+                  className={classes.media}
+                  image="images/espresso.jpg"
+                  title="espresso"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    <center>Espresso</center>
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
+          <Grid item xs={12}>
+            <Card
+              className={classes.root}
+              onClick={() =>
+                nextStep("Filter and Espresso Roast", "images/omni.jpg")
+              }
+            >
+              <CardActionArea>
+                <CardMedia
+                  className={classes.media}
+                  image="images/omniroast.jpg"
+                  title="omni"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    <center>Filter and Espresso Roast</center>
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
+        </Grid>
+      ) : null}
+      {currentStep === 3 ? (
+        <Grid container spacing={3}>
+          <Grid item xs={12} xm={4}>
+            <Card
+              className={classes.root}
+              onClick={() => nextStep("Light Roast", "images/lightroast.jpg")}
+            >
+              <CardActionArea>
+                <CardMedia
+                  className={classes.media}
+                  image="images/lightroast.jpg"
+                  title="lightroast"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    <center>Light Roast</center>
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
+          <Grid item xs={12} xm={4}>
+            <Card
+              className={classes.root}
+              onClick={() => nextStep("Medium Roast", "images/medium.jpg")}
+            >
+              <CardActionArea>
+                <CardMedia
+                  className={classes.media}
+                  image="images/medium.jpg"
+                  title="medium"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    <center>Medium Roast</center>
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
+          <Grid item xs={12} xm={4}>
+            <Card
+              className={classes.root}
+              onClick={() => nextStep("Dark Roast", "images/dark.jpg")}
+            >
+              <CardActionArea>
+                <CardMedia
+                  className={classes.media}
+                  image="images/dark.jpg"
+                  title="dark"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    <center>Dark Roast</center>
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
+        </Grid>
+      ) : null}
+      {currentStep === 4 ? (
+        <Grid container spacing={3}>
           <Grid item xs={12} xm={4}>
             <Card
               className={classes.root}
@@ -204,7 +342,7 @@ export default function CenteredGrid() {
                   image="images/fruits.jpg"
                   title="fruits"
                 />
-                <CardContent>
+                <CardContent className={classes.niceColor}>
                   <Typography gutterBottom variant="h5" component="h2">
                     <center>Fruity</center>
                   </Typography>
@@ -215,12 +353,14 @@ export default function CenteredGrid() {
           <Grid item xs={12} xm={4}>
             <Card
               className={classes.root}
-              onClick={() => nextStep("chocolaty and nutty", "images/choc.jpg")}
+              onClick={() =>
+                nextStep("chocolaty and nutty", "images/choc.jpeg")
+              }
             >
               <CardActionArea>
                 <CardMedia
                   className={classes.media}
-                  image="images/choc.jpg"
+                  image="images/choc.jpeg"
                   title="chocolate"
                 />
                 <CardContent>
@@ -234,12 +374,12 @@ export default function CenteredGrid() {
           <Grid item xs={12} xm={4}>
             <Card
               className={classes.root}
-              onClick={() => nextStep("spicy", "images/spices.jpg")}
+              onClick={() => nextStep("spicy", "images/spices.jpeg")}
             >
               <CardActionArea>
                 <CardMedia
                   className={classes.media}
-                  image="images/spices.jpg"
+                  image="images/spices.jpeg"
                   title="spices"
                 />
                 <CardContent>
@@ -252,7 +392,7 @@ export default function CenteredGrid() {
           </Grid>
         </Grid>
       ) : null}
-      {currentStep === 3 ? (
+      {currentStep === 5 ? (
         <Grid container spacing={3}>
           <Grid xs={12} item>
             <Card
@@ -353,13 +493,13 @@ export default function CenteredGrid() {
           <Grid item xs={12}>
             <Card
               className={classes.root}
-              onClick={() => nextStep("Indonesia", "images/indonesia.jpg")}
+              onClick={() => nextStep("Panama", "images/indonesia.jpg")}
             >
               <CardActionArea>
                 <CardMedia
                   className={classes.media}
                   image="images/indonesia.jpg"
-                  title="Indonesia"
+                  title="Panama"
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">
@@ -371,7 +511,7 @@ export default function CenteredGrid() {
           </Grid>
         </Grid>
       ) : null}
-      {currentStep === 4 ? (
+      {currentStep === 6 ? (
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Card
@@ -381,7 +521,7 @@ export default function CenteredGrid() {
               <CardActionArea>
                 <CardMedia
                   className={classes.media}
-                  image="images/washed.jpg"
+                  image="images/washed.jpeg"
                   title="washed"
                 />
                 <CardContent>
@@ -432,64 +572,212 @@ export default function CenteredGrid() {
           </Grid>
         </Grid>
       ) : null}
-      {currentStep === 5 ? (
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Typography id="discrete-slider-always" gutterBottom>
-              Price Range
-            </Typography>
-            <AirbnbSlider
-              ThumbComponent={AirbnbThumbComponent}
-              getAriaLabel={index =>
-                index === 0 ? "Minimum price" : "Maximum price"
-              }
-              defaultValue={[10, 50]}
-              valueLabelDisplay="on"
-              aria-labelledby="discrete-slider-always"
-              step={10}
-            />
-            <Button size="big" color="primary" onClick={() => nextStep()}>
-              {" "}
-              Apply{" "}
-            </Button>
-          </Grid>
-        </Grid>
-      ) : null}
-      {currentStep === 6 ? (
-        <Grid container spacing={1}>
+      {currentStep === 7 ? (
+        <Grid>
           <Grid item xs={12}>
             <Card className={classes.root}>
-              <CardActionArea>
-                <CardMedia
-                  className={classes.media}
-                  image="images/coffeematch.jpg"
-                  title="Coffee match"
+              <Box fontWeight="fontWeightBold" m={1}>
+                <center>
+                  <h1>Taste Profile</h1>
+                </center>
+              </Box>
+
+              <CardMedia
+                className={classes.media}
+                image="images/profile.jpg"
+                title="profile"
+              />
+              <CardContent>
+                <Typography id="discrete-slider-custom" gutterBottom>
+                  Sweetness
+                </Typography>
+                <Slider
+                  defaultValue={20}
+                  getAriaValueText={valuetext}
+                  aria-labelledby="discrete-slider-custom"
+                  step={10}
+                  valueLabelDisplay="auto"
+                  profile={profile}
                 />
-                <CardContent>Coffee Match</CardContent>
-              </CardActionArea>
-              <CardActions>
+                <Typography id="discrete-slider-custom" gutterBottom>
+                  Intensity
+                </Typography>
+                <Slider
+                  defaultValue={20}
+                  getAriaValueText={valuetext}
+                  aria-labelledby="discrete-slider-custom"
+                  step={10}
+                  valueLabelDisplay="auto"
+                  profile={profile}
+                />
+                <Typography id="discrete-slider-custom" gutterBottom>
+                  Acidity
+                </Typography>
+                <Slider
+                  defaultValue={20}
+                  getAriaValueText={valuetext}
+                  aria-labelledby="discrete-slider-custom"
+                  step={10}
+                  valueLabelDisplay="auto"
+                  profile={profile}
+                />
+                <Typography id="discrete-slider-custom" gutterBottom>
+                  Balance
+                </Typography>
+                <Slider
+                  defaultValue={20}
+                  getAriaValueText={valuetext}
+                  aria-labelledby="discrete-slider-custom"
+                  step={10}
+                  valueLabelDisplay="auto"
+                />
+                <Typography id="discrete-slider-custom" gutterBottom>
+                  Body
+                </Typography>
+                <Slider
+                  defaultValue={20}
+                  getAriaValueText={valuetext}
+                  aria-labelledby="discrete-slider-custom"
+                  step={10}
+                  valueLabelDisplay="auto"
+                  weight={weight}
+                />
+                <Typography id="discrete-slider-custom" gutterBottom>
+                  Intensity with milk
+                </Typography>
+                <Slider
+                  defaultValue={20}
+                  getAriaValueText={valuetext}
+                  aria-labelledby="discrete-slider-custom"
+                  step={10}
+                  valueLabelDisplay="auto"
+                  profile={profile}
+                />
                 <center>
                   <Button
-                    size="big"
-                    color="primary"
+                    size="larg"
+                    color="secondary"
+                    variant="contained"
                     onClick={() => nextStep("price")}
                   >
-                    Buy
+                    Apply
                   </Button>
                 </center>
-                <Button
-                  size="big"
-                  color="primary"
-                  onClick={() => previousStep()}
-                >
-                  Back
-                </Button>
-              </CardActions>
+              </CardContent>
             </Card>
           </Grid>
         </Grid>
       ) : null}
-      {currentStep === 7 ? (
+      {currentStep === 8 ? (
+        <Grid>
+          <Grid item xs={12}>
+            <Card className={classes.root}>
+              <Box fontWeight="fontWeightBold" m={1}>
+                <center>
+                  <h1>Price Range</h1>
+                </center>
+              </Box>
+
+              <CardMedia
+                className={classes.media}
+                image="images/price.jpg"
+                title="price"
+              />
+              <CardContent>
+                <Typography
+                  id="discrete-slider-custom"
+                  gutterBottom
+                ></Typography>
+                <Slider
+                  value={value}
+                  onChange={handleChange}
+                  valueLabelDisplay="auto"
+                  aria-labelledby="range-slider"
+                  getAriaValueText={valuetext}
+                  marks={marks}
+                />
+                <center>
+                  <Button
+                    size="larg"
+                    color="secondary"
+                    variant="contained"
+                    onClick={() => nextStep("price")}
+                  >
+                    Apply
+                  </Button>
+                </center>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+      ) : null}
+
+      {currentStep === 9 ? (
+        <Grid>
+          <Grid item xs={12}>
+            <Card className={classes.result}>
+              <CardHeader title="Your coffee match: Ethiopia Guji" />
+              <CardMedia
+                className={classes.media}
+                image="images/guji.jpg"
+                title="Ethiopia Guji"
+              />
+              <CardContent>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  About this coffee: This coffee comes from Guji, located in the
+                  south of Ethiopia in the Oromia region near the Kenyan border.
+                  The overall quality of coffees from this region are
+                  exceptional. As Ethiopia is the birthplace of coffee, there
+                  are thousands of different varietals that have naturally
+                  evolved over the years that carry very interesting properties
+                  that still remain a mystery even today. Ethiopian Heirloom is
+                  the cross pollination of these varietals that have occurred
+                  naturally over the centuries, as local varietals such as Certo
+                  and Wolisho cross pollinate with ancient genetic coffee lines,
+                  which are still present today as wild trees. The volcanic
+                  soils in Guji are rich in minerals which are ideal for the
+                  demanding Arabica coffee plant. Traditionally, the small scale
+                  farmers from Guji live in harmony with nature. At an altitude
+                  of 1750 - 2300m above sea level, the coffee cherries are left
+                  to mature in the natural forests surrounding the farmers land,
+                  where they are hand-picked and brought to the washing station.
+                  There, the coffee beans are carefully processed. The beans are
+                  separated from the pulp, fermented for 1-2 days in a basin and
+                  then spread out on African drying beds where they are left to
+                  dry naturally by the sun. The beans are turned several times a
+                  day to allow them to dry evenly. The drying process can take
+                  up to 2 weeks. The manner in which the beans are dried has a
+                  direct impact on the resulting quality and taste of the
+                  coffee. The coffee is roasted as an espresso to emphasize its
+                  intense and complex fruity aromas. Unique tasting notes of
+                  passion fruit, honey and jasmine can be found in this coffee.
+                </Typography>
+                <CardActions>
+                  <center>
+                    <Button
+                      color="secondary"
+                      size="large"
+                      variant="contained"
+                      onClick={() => nextStep("price")}
+                    >
+                      Buy
+                    </Button>
+                  </center>
+                  <Button
+                    color="secondary"
+                    size="large"
+                    variant="contained"
+                    onClick={() => previousStep()}
+                  >
+                    Back
+                  </Button>
+                </CardActions>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+      ) : null}
+      {currentStep === 10 ? (
         <Grid container spacing={1}>
           <Grid item xs={12}>
             <Card className={classes.root}>
@@ -639,8 +927,9 @@ export default function CenteredGrid() {
                 </Grid>
                 <center>
                   <Button
-                    size="big"
-                    color="primary"
+                    color="secondary"
+                    size="large"
+                    variant="contained"
                     onClick={() => nextStep("Submit")}
                   >
                     Submit
@@ -652,9 +941,9 @@ export default function CenteredGrid() {
         </Grid>
       ) : null}
 
-      {currentStep === 8 ? (
+      {currentStep === 11 ? (
         <Grid item xs={12}>
-          <Card className={classes.roots}>
+          <Card className={classes.root}>
             <CardActionArea>
               <CardMedia
                 className={classes.closer}

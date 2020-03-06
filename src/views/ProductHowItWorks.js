@@ -36,7 +36,7 @@ const styles = theme => ({
     fontWeight: theme.typography.fontWeightMedium
   },
   image: {
-    height: 100,
+    height: 250,
     marginTop: theme.spacing(4),
     marginBottom: theme.spacing(4)
   },
@@ -76,7 +76,7 @@ function ProductHowItWorks(props) {
               <div className={classes.item}>
                 <div className={classes.number}>1.</div>
                 <img
-                  src="images/chemex.jpg"
+                  src="images/choice.jpg"
                   alt="coffee"
                   className={classes.image}
                 />
@@ -109,7 +109,7 @@ function ProductHowItWorks(props) {
                   className={classes.image}
                 />
                 <Typography variant="h5" align="center">
-                  {"New coffees every month. New experiences, new surprises. "}
+                  {"Enjoy the coffee. Experience something new. Get suprised. "}
                   {"Your coffee time will no longer be alike."}
                 </Typography>
               </div>
