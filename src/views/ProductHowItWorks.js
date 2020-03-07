@@ -81,7 +81,7 @@ function ProductHowItWorks(props) {
                   alt="coffee"
                   className={classes.image}
                 />
-                <Typography variant="h4" align="center">
+                <Typography variant="h7" align="center">
                   Find the perfect coffee based on your personal wishes with our
                   personal coffee match finder
                 </Typography>
@@ -95,7 +95,7 @@ function ProductHowItWorks(props) {
                   alt="step2"
                   className={classes.image}
                 />
-                <Typography variant="h4" align="center">
+                <Typography variant="h7" align="center">
                   After you found your perfect match you can easily buy the
                   coffee here
                 </Typography>
@@ -109,7 +109,7 @@ function ProductHowItWorks(props) {
                   alt="step3"
                   className={classes.image}
                 />
-                <Typography variant="h4" align="center">
+                <Typography variant="h7" align="center">
                   {"Enjoy the coffee. Experience something new. Get suprised. "}
                   {"Your coffee time will no longer be alike."}
                 </Typography>
