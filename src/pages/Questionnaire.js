@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
   },
 
   closer: {
-    height: 600
+    height: 400
   },
 
   result: {
@@ -151,7 +151,7 @@ export default function CenteredGrid() {
   return (
     <div className={classes.root}>
       <h1>
-        <center>Coffee Match</center>
+        <center>Coffee Match Finder</center>
       </h1>
 
       <div
@@ -192,7 +192,8 @@ export default function CenteredGrid() {
                 className={classes.button}
                 component="a"
               >
-                Find the perfect coffee
+                Start questionnaire and choose your bean, roast, flavour, origin
+                and taste profile
               </Button>
             </Grid>
           </Grid>
@@ -658,7 +659,7 @@ export default function CenteredGrid() {
                     size="larg"
                     color="secondary"
                     variant="contained"
-                    onClick={() => nextStep("price")}
+                    onClick={() => nextStep("taste profile")}
                   >
                     Apply
                   </Button>
@@ -724,33 +725,54 @@ export default function CenteredGrid() {
               />
               <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  About this coffee: This coffee comes from Guji, located in the
-                  south of Ethiopia in the Oromia region near the Kenyan border.
-                  The overall quality of coffees from this region are
-                  exceptional. As Ethiopia is the birthplace of coffee, there
-                  are thousands of different varietals that have naturally
-                  evolved over the years that carry very interesting properties
-                  that still remain a mystery even today. Ethiopian Heirloom is
-                  the cross pollination of these varietals that have occurred
-                  naturally over the centuries, as local varietals such as Certo
-                  and Wolisho cross pollinate with ancient genetic coffee lines,
-                  which are still present today as wild trees. The volcanic
-                  soils in Guji are rich in minerals which are ideal for the
-                  demanding Arabica coffee plant. Traditionally, the small scale
-                  farmers from Guji live in harmony with nature. At an altitude
-                  of 1750 - 2300m above sea level, the coffee cherries are left
-                  to mature in the natural forests surrounding the farmers land,
-                  where they are hand-picked and brought to the washing station.
-                  There, the coffee beans are carefully processed. The beans are
-                  separated from the pulp, fermented for 1-2 days in a basin and
-                  then spread out on African drying beds where they are left to
-                  dry naturally by the sun. The beans are turned several times a
-                  day to allow them to dry evenly. The drying process can take
-                  up to 2 weeks. The manner in which the beans are dried has a
-                  direct impact on the resulting quality and taste of the
-                  coffee. The coffee is roasted as an espresso to emphasize its
-                  intense and complex fruity aromas. Unique tasting notes of
-                  passion fruit, honey and jasmine can be found in this coffee.
+                  <p>
+                    About this coffee: This coffee comes from Guji, located in
+                    the south of Ethiopia in the Oromia region near the Kenyan
+                    border. Unique tasting notes of passion fruit, honey and
+                    jasmine can be found in this coffee.
+                  </p>
+                  <p>Price: 12,90 €</p>
+                </Typography>
+                <CardActions>
+                  <center>
+                    <Button
+                      color="secondary"
+                      size="large"
+                      variant="contained"
+                      onClick={() => nextStep("price")}
+                    >
+                      Buy
+                    </Button>
+                  </center>
+                  <Button
+                    color="secondary"
+                    size="large"
+                    variant="contained"
+                    onClick={() => previousStep()}
+                  >
+                    Back
+                  </Button>
+                </CardActions>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12}>
+            <Card className={classes.result}>
+              <CardHeader title="Alternative coffee match: Gerba Espresso" />
+              <CardMedia
+                className={classes.media}
+                image="images/gerba.png"
+                title="Gerba"
+              />
+              <CardContent>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  <p>
+                    About this coffee: This coffee comes from the south of
+                    Ethiopia. The coffee was natural processed and because of
+                    that it is a very sweet coffee with amazing flavour of
+                    blueberries and papaya
+                  </p>
+                  <p>Price: 16,90 €</p>
                 </Typography>
                 <CardActions>
                   <center>
@@ -953,7 +975,8 @@ export default function CenteredGrid() {
               <CardContent>
                 Thanks for your order. A conformation mail has been sent to your
                 mail address. If you have further questions do not hesitate to
-                contact us.
+                contact us. The coffee will be delivered within 3 days. Get
+                ready for your morning update.
               </CardContent>
             </CardActionArea>
           </Card>
