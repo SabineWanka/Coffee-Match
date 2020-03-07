@@ -95,7 +95,7 @@ function ProductCategories(props) {
     {
       url: "images/brasil.jpg",
       title: "Origin",
-      width: "20%"
+      width: "40%"
     },
     {
       url: "images/natural.jpg",
