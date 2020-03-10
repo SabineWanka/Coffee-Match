@@ -45,10 +45,10 @@ function ProductHero(props) {
         color="inherit"
         align="center"
         variant="h5"
-        className={classes.h5}
+        className={classes.h7}
       >
-        Find the coffee which is matching your personal tastes and desires and
-        enjoy delcious coffee every single day at home
+        Find the coffee which matches your personal tastes and desires. Have a
+        unique coffee time.
       </Typography>
     </ProductHeroLayout>
   );

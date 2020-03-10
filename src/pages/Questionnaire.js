@@ -13,8 +13,8 @@ import TextField from "@material-ui/core/TextField";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import CardHeader from "@material-ui/core/CardHeader";
-import Box from "@material-ui/core/Box";
 import { Chip } from "react-rainbow-components";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -208,6 +208,11 @@ export default function CenteredGrid() {
           //className={currentStep > 2 ? classes.hidden : ""}
         >
           <Grid item xs={12}>
+            <Typography>
+              <center>
+                <h3>What kind of coffee would you like to drink?</h3>
+              </center>
+            </Typography>
             <Card
               className={classes.root}
               onClick={() =>
@@ -273,6 +278,11 @@ export default function CenteredGrid() {
       {currentStep === 3 ? (
         <Grid container spacing={3}>
           <Grid item xs={12} xm={4}>
+            <Typography>
+              <center>
+                <h3>Which roast profile do you like?</h3>
+              </center>
+            </Typography>
             <Card
               className={classes.root}
               onClick={() => nextStep("Light Roast", "images/lightroast.jpg")}
@@ -334,6 +344,11 @@ export default function CenteredGrid() {
       {currentStep === 4 ? (
         <Grid container spacing={3}>
           <Grid item xs={12} xm={4}>
+            <Typography>
+              <center>
+                <h3>Which flavour do you prefer?</h3>
+              </center>
+            </Typography>
             <Card
               className={classes.root}
               onClick={() => nextStep("fruity", "images/fruits.jpg")}
@@ -397,6 +412,11 @@ export default function CenteredGrid() {
       {currentStep === 5 ? (
         <Grid container spacing={3}>
           <Grid xs={12} item>
+            <Typography>
+              <center>
+                <h3>Which origin are you curious about the most?</h3>
+              </center>
+            </Typography>
             <Card
               className={classes.root}
               onClick={() => nextStep("Brazil", "images/brasil.jpg")}
@@ -516,6 +536,11 @@ export default function CenteredGrid() {
       {currentStep === 6 ? (
         <Grid container spacing={3}>
           <Grid item xs={12}>
+            <Typography>
+              <center>
+                <h3>Which process method do you prefer?</h3>
+              </center>
+            </Typography>
             <Card
               className={classes.root}
               onClick={() => nextStep("washed", "images/washed.jpg")}
@@ -577,13 +602,12 @@ export default function CenteredGrid() {
       {currentStep === 7 ? (
         <Grid>
           <Grid item xs={12}>
+            <Typography>
+              <center>
+                <h3>Please choose the taste profile for your coffee</h3>
+              </center>
+            </Typography>
             <Card className={classes.root}>
-              <Box fontWeight="fontWeightBold" m={1}>
-                <center>
-                  <h1>Taste Profile</h1>
-                </center>
-              </Box>
-
               <CardMedia
                 className={classes.media}
                 image="images/profile.jpg"
@@ -673,13 +697,12 @@ export default function CenteredGrid() {
       {currentStep === 8 ? (
         <Grid>
           <Grid item xs={12}>
+            <Typography>
+              <center>
+                <h3>Please state your budget for the coffee</h3>
+              </center>
+            </Typography>
             <Card className={classes.root}>
-              <Box fontWeight="fontWeightBold" m={1}>
-                <center>
-                  <h1>Price Range</h1>
-                </center>
-              </Box>
-
               <CardMedia
                 className={classes.media}
                 image="images/price.jpg"
@@ -717,6 +740,11 @@ export default function CenteredGrid() {
       {currentStep === 9 ? (
         <Grid>
           <Grid item xs={12}>
+            <Typography>
+              <center>
+                <h2>Result</h2>
+              </center>
+            </Typography>
             <Card className={classes.result}>
               <CardHeader title="Your coffee match: Ethiopia Guji" />
               <CardMedia
@@ -974,13 +1002,34 @@ export default function CenteredGrid() {
                 title="Thank you"
               />
               <CardContent>
-                Thanks for your order. A conformation mail has been sent to your
-                mail address. If you have further questions do not hesitate to
-                contact us. The coffee will be delivered within 3 days. Get
-                ready for your morning update.
+                <p>
+                  Thanks for your order. A conformation has been sent to your
+                  mail address.
+                </p>
+                <p>
+                  If you have further questions do not hesitate to contact us.
+                </p>
+                <p>
+                  The coffee will be delivered within 3 days. Get ready for your
+                  morning update.
+                </p>
               </CardContent>
             </CardActionArea>
           </Card>
+          <Link to="/">
+            <center>
+              <Button
+                color="secondary"
+                size="large"
+                variant="contained"
+                className={classes.button}
+                component="a"
+                href="/"
+              >
+                Go back to Homepage
+              </Button>
+            </center>
+          </Link>
         </Grid>
       ) : null}
     </div>
