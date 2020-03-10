@@ -13,6 +13,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.secondary.light,
     overflow: "hidden"
   },
+
   container: {
     marginTop: theme.spacing(10),
     marginBottom: theme.spacing(15),
@@ -21,11 +22,18 @@ const styles = theme => ({
     flexDirection: "column",
     alignItems: "center"
   },
+  step: {
+    paddingTop: 1,
+    paddingBottom: 1,
+    paddingLeft: 35,
+    paddingRight: 35
+  },
+
   item: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: theme.spacing(0, 5)
+    padding: "inherit"
   },
   title: {
     marginBottom: theme.spacing(14)
@@ -81,7 +89,11 @@ function ProductHowItWorks(props) {
                   alt="coffee"
                   className={classes.image}
                 />
-                <Typography variant="h8" align="center">
+                <Typography
+                  className={classes.step}
+                  variant="h8"
+                  align="center"
+                >
                   Find the perfect coffee based on your personal wishes with our
                   personal coffee match finder
                 </Typography>
@@ -95,7 +107,11 @@ function ProductHowItWorks(props) {
                   alt="step2"
                   className={classes.image}
                 />
-                <Typography variant="h8" align="center">
+                <Typography
+                  className={classes.step}
+                  variant="h8"
+                  align="center"
+                >
                   After you found your perfect match you can easily buy the
                   coffee here
                 </Typography>
@@ -109,7 +125,11 @@ function ProductHowItWorks(props) {
                   alt="step3"
                   className={classes.image}
                 />
-                <Typography variant="h8" align="center">
+                <Typography
+                  className={classes.step}
+                  variant="h8"
+                  align="center"
+                >
                   {"Enjoy the coffee. Experience something new. Get suprised. "}
                   {"Your coffee time will no longer be alike."}
                 </Typography>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -22,7 +22,8 @@ const useStyles = makeStyles(theme => ({
   },
 
   media: {
-    height: 300
+    height: 400,
+    width: "100%"
   },
 
   listItem: {
