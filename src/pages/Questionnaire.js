@@ -166,7 +166,7 @@ export default function CenteredGrid() {
       >
         {![1, 2, 10, 11].includes(currentStep) &&
           answers.map(a => (
-            <Chip label={a.answer} variant="neutral">
+            <Chip label={a.answer} color="primary" variant="neutral">
               <h5 className="rainbow-p-top_large rainbow-font-size-heading_small">
                 <center>{a.answer}</center>
               </h5>
@@ -757,8 +757,11 @@ export default function CenteredGrid() {
                   <p>
                     About this coffee: This coffee comes from Guji, located in
                     the south of Ethiopia in the Oromia region near the Kenyan
-                    border. Unique tasting notes of passion fruit, honey and
-                    jasmine can be found in this coffee.
+                    border.
+                    <p>
+                      Unique tasting notes of passion fruit, honey and jasmine
+                      can be found in this coffee.
+                    </p>
                   </p>
                   <p>Price: 12,90 €</p>
                 </Typography>
@@ -766,7 +769,7 @@ export default function CenteredGrid() {
                   <center>
                     <Button
                       color="secondary"
-                      size="large"
+                      size="medium"
                       variant="contained"
                       onClick={() => nextStep("price")}
                     >
@@ -775,11 +778,19 @@ export default function CenteredGrid() {
                   </center>
                   <Button
                     color="secondary"
-                    size="large"
+                    size="medium"
                     variant="contained"
                     onClick={() => previousStep()}
                   >
                     Back
+                  </Button>
+                  <Button
+                    color="secondary"
+                    size="medium"
+                    variant="contained"
+                    href="/quiz"
+                  >
+                    Restart
                   </Button>
                 </CardActions>
               </CardContent>
@@ -797,17 +808,17 @@ export default function CenteredGrid() {
                 <Typography variant="body2" color="textSecondary" component="p">
                   <p>
                     About this coffee: This coffee comes from the south of
-                    Ethiopia. The coffee was natural processed and because of
-                    that it is a very sweet coffee with amazing flavour of
-                    blueberries and papaya
+                    Ethiopia. The coffee was natural processed.
                   </p>
+                  <p>Find notes of blueberries and papaya in this coffe.</p>
+
                   <p>Price: 16,90 €</p>
                 </Typography>
                 <CardActions>
                   <center>
                     <Button
                       color="secondary"
-                      size="large"
+                      size="medium"
                       variant="contained"
                       onClick={() => nextStep("price")}
                     >
@@ -816,11 +827,19 @@ export default function CenteredGrid() {
                   </center>
                   <Button
                     color="secondary"
-                    size="large"
+                    size="medium"
                     variant="contained"
                     onClick={() => previousStep()}
                   >
                     Back
+                  </Button>
+                  <Button
+                    color="secondary"
+                    size="medium"
+                    variant="contained"
+                    href="/quiz"
+                  >
+                    Restart
                   </Button>
                 </CardActions>
               </CardContent>

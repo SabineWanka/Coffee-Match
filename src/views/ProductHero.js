@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "../components/Typography";
 import ProductHeroLayout from "./ProductHeroLayout";
+import Button from "../components/Button";
+import { Link } from "react-router-dom";
 
 const backgroundImage = "images/opener.jpg";
 
@@ -15,7 +17,7 @@ const styles = theme => ({
   button: {
     minWidth: 200
   },
-  h5: {
+  h7: {
     marginBottom: theme.spacing(4),
     marginTop: theme.spacing(4),
     [theme.breakpoints.up("sm")]: {
@@ -47,9 +49,21 @@ function ProductHero(props) {
         variant="h5"
         className={classes.h7}
       >
-        Find the coffee which matches your personal tastes and desires. Have a
-        unique coffee time.
+        Have a unique coffee time
       </Typography>
+
+      <Link to="/quiz">
+        <Button
+          color="secondary"
+          variant="contained"
+          size="medium"
+          className={classes.button}
+          component="a"
+          href="/quiz"
+        >
+          Get your coffee match
+        </Button>
+      </Link>
     </ProductHeroLayout>
   );
 }
