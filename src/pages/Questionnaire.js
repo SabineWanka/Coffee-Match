@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   },
 
   media: {
-    height: 400,
+    height: 300,
     width: "100%"
   },
 
@@ -33,16 +33,9 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 700
   },
 
-  opener: {
-    position: "relative",
-    backgroundColor: theme.palette.grey[800],
-    color: theme.palette.common.white,
-    marginBottom: theme.spacing(4),
-    //backgroundImage: "url(images/opener.jpg)",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    height: 1000
+  match: {
+    height: 250,
+    fontSize: 17
   },
 
   closer: {
@@ -181,21 +174,34 @@ export default function CenteredGrid() {
           className={currentStep > 1 ? classes.hidden : ""}
         >
           <Grid item xs={12} onClick={() => nextStep()}>
-            <Grid
-              className={classes.opener}
-              style={{ backgroundImage: `url("images/opener.jpg")` }}
-            >
-              <Typography variant="h5" color="inherit" paragraph></Typography>
-              <Button
-                color="secondary"
-                size="large"
-                variant="contained"
-                className={classes.button}
-                component="a"
-              >
-                Start questionnaire and choose your bean, roast, flavour, origin
-                and taste profile
-              </Button>
+            <Grid>
+              <Card className={classes.root}>
+                <CardMedia
+                  className={classes.match}
+                  image="images/match.jpg"
+                  title="match"
+                />
+                <CardContent>
+                  <Typography className={classes.match}>
+                    <center>
+                      <p>Options to choose from:</p>
+                      <p>
+                        Kind of coffee, roast profile, flavour, origin, process,
+                        taste profile, budget
+                      </p>
+                    </center>
+
+                    <Button
+                      color="secondary"
+                      size="medium"
+                      variant="contained"
+                      onClick={() => nextStep()}
+                    >
+                      Start the coffee match finder
+                    </Button>
+                  </Typography>
+                </CardContent>
+              </Card>
             </Grid>
           </Grid>
         </Grid>
